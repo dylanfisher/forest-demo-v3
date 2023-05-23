@@ -1,0 +1,29 @@
+// Markdown
+
+.markdown {
+  a {
+    @include default-link;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: $paragraph-margin * 2;
+    margin-bottom: $paragraph-margin;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  ul {
+    @include default-list;
+  }
+
+  ol {
+    @include numbered-list;
+  }
+
+  hr {
+    margin-top: map-get($spacers, 8);
+    margin-bottom: map-get($spacers, 8);
+  }
+}

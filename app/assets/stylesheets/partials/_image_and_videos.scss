@@ -1,0 +1,73 @@
+// Images and videos
+
+img,
+video,
+svg {
+  max-width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+
+video,
+audio {
+  width: 100%;
+}
+
+.forest-image-jump-fix {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+.lazy-image {
+  opacity: 0;
+  transition: opacity 0.2s;
+
+  &.lazyload {
+    height: 100%;
+  }
+
+  &.lazyloaded {
+    opacity: 1;
+  }
+
+  &.content-type--image-jpeg {
+    background-color: $lazy-image-background-color;
+  }
+}
+
+.background-image {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.background-image-contain {
+  background-size: contain;
+  background-position: center center !important;
+  background-repeat: no-repeat;
+
+  &.lazyloaded {
+    background-color: transparent !important;
+  }
+}
+
+// .landscape-image {
+//   padding-bottom: 70%;
+// }
+
+// .portrait-image {
+//   padding-bottom: 119.7%;
+// }
+
+// .square-image {
+//   padding-bottom: 100%;
+// }

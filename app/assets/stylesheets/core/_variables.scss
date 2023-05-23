@@ -1,0 +1,74 @@
+/////////////////////////////////////////////////////////////////////////
+//
+// Bootstrap overrides
+//
+/////////////////////////////////////////////////////////////////////////
+
+$spacer: 1rem;
+$spacers: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$spacers: map-merge(
+  (
+    0: 0,
+    1: ($spacer * .25),
+    2: ($spacer * .5),
+    3: $spacer,
+    4: ($spacer * 1.5),
+    5: ($spacer * 2),
+    6: ($spacer * 2.5),
+    7: ($spacer * 3),
+    8: ($spacer * 4)
+  ),
+  $spacers
+);
+
+// Grid columns
+// $grid-columns:                14 !default;
+// $grid-gutter-width:           30px !default;
+
+/////////////////////////////////////////////////////////////////////////
+//
+// APP VARIABLES
+//
+/////////////////////////////////////////////////////////////////////////
+
+// Colors
+$white: #FFFFFF;
+$black: #000000;
+
+// Color assignments
+$lazy-image-background-color: rgba(0, 0, 0, 0.3);
+
+// Transitions
+$tt: 0.2s;
+
+// Sizes
+$gutter: 15px;
+
+$site-max-width: 1400px;
+$site-padding-md: 30px;
+
+// $page-content-margin: map-get($spacers, 6);
+// $page-content-margin-md: map-get($spacers, 8);
+
+$block-margin: 80px;
+$block-margin-md: 120px;
+
+$paragraph-margin: 1em;
+
+// Breakpoints
+$screen-xs: 0;
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 1100px;
+$screen-xl: 1400px;
+
+$grid-breakpoints: (
+  xs: $screen-xs,
+  sm: $screen-sm,
+  md: $screen-md,
+  lg: $screen-lg,
+  xl: $screen-xl
+);
+
+$vert-screen-sm: 600px;

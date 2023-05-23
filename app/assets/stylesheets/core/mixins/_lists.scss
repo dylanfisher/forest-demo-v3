@@ -1,0 +1,70 @@
+@mixin blank-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    & + li {
+      margin-top: 0.25em;
+    }
+  }
+}
+.blank-list { @include blank-list; }
+
+@mixin default-list {
+  list-style: none;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  li {
+    margin-left: 1em;
+    text-indent: -1em;
+
+    &:before {
+      content: '';
+      background-color: $black;
+      display: inline-block;
+      width: 0.4em;
+      height: 0.4em;
+      border-radius: 50%;
+      margin-right: 0.6em;
+    }
+
+    & + li {
+      margin-top: 0.25em;
+    }
+  }
+}
+.default-list { @include default-list; }
+
+@mixin numbered-list {
+  counter-reset: number;
+  list-style-type: none;
+  margin: $paragraph-margin 0;
+  padding: 0;
+
+  li {
+    margin: 0 0 0 26px;
+
+    &:before {
+      display: inline-block;
+      counter-increment: number;
+      content: counter(number)"\a0";
+      text-indent: -26px;
+    }
+
+    & + li {
+      margin-top: 0.25em;
+    }
+  }
+}
+.numbered-list { @include numbered-list; }

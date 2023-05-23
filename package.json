@@ -1,0 +1,15 @@
+{
+  "name": "app",
+  "private": "true",
+  "dependencies": {
+    "@hotwired/turbo-rails": "^7.3",
+    "esbuild": "^0.17",
+    "jquery": "^3.6",
+    "jquery.easing": "^1.4",
+    "lazysizes": "^5.3",
+    "lodash": "^4.17"
+  },
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets"
+  }
+}
