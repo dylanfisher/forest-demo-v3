@@ -1,5 +1,7 @@
 require "active_support/core_ext/integer/time"
 
+# ENV['FOREST_SHRINE_KEEP_FILES'] = 'false'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -17,13 +19,15 @@ Rails.application.configure do
   # Enable server timing
   config.server_timing = true
 
+  # config.assets.js_compressor = :terser
+
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join("tmp/caching-dev.txt").exist?
+  if Rails.root.join("tmp", "caching-dev.txt").exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
-    config.cache_store = :memory_store
+    config.cache_store = :file_store, "/tmp/cache/file_store"
     config.public_file_server.headers = {
       "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
@@ -32,6 +36,8 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
+
+  config.active_job.queue_adapter = :sucker_punch
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -56,6 +62,8 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  config.hosts.clear
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
@@ -64,4 +72,19 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  # Enable sending email while testing
+  config.action_mailer.perform_deliveries = true
+
+  ActionMailer::Base.smtp_settings = {
+    :port =>           Rails.application.credentials.dig(:SMTP_PORT),
+    :address =>        Rails.application.credentials.dig(:SMTP_SERVER),
+    :user_name =>      Rails.application.credentials.dig(:SMTP_LOGIN),
+    :password =>       Rails.application.credentials.dig(:SMTP_PASSWORD),
+    :domain =>         Rails.application.credentials.dig(:SMTP_DOMAIN),
+    :authentication => :plain
+  }
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.default(from: ENV["ACTION_MAILER_DEFAULT_FROM"] || "Forest CMS <hello@labud.nyc>")
+  config.action_mailer.default_url_options = { host: ENV["ACTION_MAILER_DEFAULT_URL_HOST"] || "www.labud.nyc" }
 end

@@ -23,15 +23,37 @@ module ForestDemoV3
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
-
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.time_zone = 'Eastern Time (US & Canada)'
+
+    I18n.available_locales = [:en]
+
+    config.active_record.use_yaml_unsafe_load = true
+
+    # Dynamic errors via the application's router
+    config.exceptions_app = self.routes
+
+    config.autoload_paths << "#{config.root}/app/models/blocks"
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :options]
+      end
+    end
+
+    config.middleware.insert_after ActionDispatch::Static, Rack::Deflater
+
+    # Disable Zeitwerk autolading of decorator classes
+    Rails.autoloaders.main.ignore(Rails.root.join('app/decorators'))
+
+    config.to_prepare do
+      # Load application's model / class decorators
+      Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
+        Rails.configuration.cache_classes ? require(c) : load(c)
+      end
+    end
   end
 end

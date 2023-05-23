@@ -1,0 +1,2 @@
+class HomePagesController < PagesController
+end

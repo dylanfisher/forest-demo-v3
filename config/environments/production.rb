@@ -18,41 +18,53 @@ Rails.application.configure do
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
-  # config.require_master_key = true
+  config.require_master_key = true
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
+  config.public_file_server.headers = {
+    "Cache-Control" => "public, max-age=31536000"
+  }
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
+
+  # Compress JavaScripts
+  config.assets.js_compressor = :terser
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.asset_host = "http://assets.example.com"
+  config.action_controller.asset_host = Rails.application.credentials.dig(:asset_host) unless ENV["DISABLE_ASSET_HOST"].present?
+  config.action_mailer.asset_host = (ENV["MAILER_ASSET_HOST"].presence || Rails.application.credentials.dig(:asset_host)) unless ENV["DISABLE_MAILER_ASSET_HOST"].present?
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
-  config.log_level = :info
+  config.log_level = :error
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
 
   # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  if ENV["MEMCACHEDCLOUD_SERVERS"]
+    config.cache_store = :mem_cache_store,
+                         ENV["MEMCACHEDCLOUD_SERVERS"].split(","), {
+                           username: ENV["MEMCACHEDCLOUD_USERNAME"],
+                           password: ENV["MEMCACHEDCLOUD_PASSWORD"] }
+  end
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
-  # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "forest_demo_v3_production"
+  config.active_job.queue_adapter = :sucker_punch
+  # config.active_job.queue_name_prefix = "harrison_green_production"
 
   config.action_mailer.perform_caching = false
 
@@ -82,4 +94,16 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  ActionMailer::Base.smtp_settings = {
+    :port =>           Rails.application.credentials.dig(:SMTP_PORT),
+    :address =>        Rails.application.credentials.dig(:SMTP_SERVER),
+    :user_name =>      Rails.application.credentials.dig(:SMTP_LOGIN),
+    :password =>       Rails.application.credentials.dig(:SMTP_PASSWORD),
+    :domain =>         Rails.application.credentials.dig(:SMTP_DOMAIN),
+    :authentication => :plain
+  }
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.default(from: ENV["ACTION_MAILER_DEFAULT_FROM"] || "Forest CMS <hello@labud.nyc>")
+  config.action_mailer.default_url_options = { host: ENV["ACTION_MAILER_DEFAULT_URL_HOST"] || "www.labud.nyc" }
 end
