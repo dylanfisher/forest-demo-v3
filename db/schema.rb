@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_23_040669) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_31_192136) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_040669) do
     t.string "attachment_content_type"
     t.boolean "retain_source", default: false, null: false
     t.bigint "poster_image_id"
+    t.jsonb "video_data"
     t.index "((attachment_data -> 'derivatives'::text))", name: "index_media_items_on_attachment_data_derivatives", using: :gin
     t.index ["attachment_content_type"], name: "index_media_items_on_attachment_content_type"
     t.index ["attachment_data"], name: "index_media_items_on_attachment_data", using: :gin

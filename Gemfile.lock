@@ -6,10 +6,12 @@ GIT
     forest (3.28.1)
       aws-sdk-lambda
       aws-sdk-s3
+      aws-sdk-sns
       bootstrap (~> 4.0)
       cocoon
       deep_cloneable
       devise
+      faraday
       fastimage
       has_scope
       jbuilder
@@ -113,6 +115,9 @@ GEM
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.4)
+    aws-sdk-sns (1.60.0)
+      aws-sdk-core (~> 3, >= 3.165.0)
+      aws-sigv4 (~> 1.1)
     aws-sigv4 (1.5.2)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.18)
@@ -142,6 +147,10 @@ GEM
       addressable (~> 2.8)
     erubi (1.12.0)
     execjs (2.8.1)
+    faraday (2.7.5)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.2)
     fastimage (2.2.7)
     ffi (1.15.5)
     globalid (1.1.0)
@@ -244,6 +253,7 @@ GEM
       railties (>= 5.2)
     roda (3.68.0)
       rack
+    ruby2_keywords (0.0.5)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
