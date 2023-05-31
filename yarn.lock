@@ -112,12 +112,7 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.17.19.tgz#8cfaf2ff603e9aabb910e9c0558c26cf32744061"
   integrity sha512-lAhycmKnVOuRYNtRtatQR1LPQf2oYCkRGkSFnseDAKPl8lu5SOsK/e1sXe5a0Pc5kHIHe6P2I/ilntNv2xf3cA==
 
-"@hotwired/stimulus@^3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.2.1.tgz#e3de23623b0c52c247aba4cd5d530d257008676b"
-  integrity sha512-HGlzDcf9vv/EQrMJ5ZG6VWNs8Z/xMN+1o2OhV1gKiSG6CqZt5MCBB1gRg5ILiN3U0jEAxuDTNPRfBcnZBDmupQ==
-
-"@hotwired/turbo-rails@^7.3.0":
+"@hotwired/turbo-rails@^7.3":
   version "7.3.0"
   resolved "https://registry.yarnpkg.com/@hotwired/turbo-rails/-/turbo-rails-7.3.0.tgz#422c21752509f3edcd6c7b2725bbe9e157815f51"
   integrity sha512-fvhO64vp/a2UVQ3jue9WTc2JisMv9XilIC7ViZmXAREVwiQ2S4UC7Go8f9A1j4Xu7DBI6SbFdqILk5ImqVoqyA==
@@ -135,7 +130,7 @@
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-7.0.4.tgz#70a3ca56809f7aaabb80af2f9c01ae51e1a8ed41"
   integrity sha512-tz4oM+Zn9CYsvtyicsa/AwzKZKL+ITHWkhiu7x+xF77clh2b4Rm+s6xnOgY/sGDWoFWZmtKsE95hxBPkgQQNnQ==
 
-esbuild@^0.17.19:
+esbuild@^0.17:
   version "0.17.19"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.17.19.tgz#087a727e98299f0462a3d0bcdd9cd7ff100bd955"
   integrity sha512-XQ0jAPFkK/u3LcVRcvVHQcTIqD6E2H1fvZMA5dQPSOWb3suUbWbfbRf94pjc0bNzRYLfIrDRQXr7X+LHIm5oHw==
@@ -162,3 +157,23 @@ esbuild@^0.17.19:
     "@esbuild/win32-arm64" "0.17.19"
     "@esbuild/win32-ia32" "0.17.19"
     "@esbuild/win32-x64" "0.17.19"
+
+jquery.easing@^1.4:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/jquery.easing/-/jquery.easing-1.4.1.tgz#47982c5836bd758fd48494923c4a101ef6e93e3b"
+  integrity sha512-BVpRacWCbNfo/ALWxnLkIY/WRa4Ydg/LtwzIJZvDm7vrhV8Txv+ACi6EGnU11zT19sTc3KEPathWx6CtjWLD1w==
+
+jquery@^3.6:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.0.tgz#fe2c01a05da500709006d8790fe21c8a39d75612"
+  integrity sha512-umpJ0/k8X0MvD1ds0P9SfowREz2LenHsQaxSohMZ5OMNEU2r0tf8pdeEFTHMFxWVxKNyU9rTtK3CWzUCTKJUeQ==
+
+lazysizes@^5.3:
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/lazysizes/-/lazysizes-5.3.2.tgz#27f974c26f5fcc33e7db765c0f4930488c8a2984"
+  integrity sha512-22UzWP+Vedi/sMeOr8O7FWimRVtiNJV2HCa+V8+peZOw6QbswN9k58VUhd7i6iK5bw5QkYrF01LJbeJe0PV8jg==
+
+lodash@^4.17:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==

@@ -2,6 +2,7 @@
   "name": "app",
   "private": "true",
   "dependencies": {
+    "@hotwired/turbo": "^7.3.0",
     "@hotwired/turbo-rails": "^7.3",
     "esbuild": "^0.17",
     "jquery": "^3.6",
