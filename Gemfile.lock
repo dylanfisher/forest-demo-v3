@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dylanfisher/forest.git
-  revision: 3f54a38d2b38d97d6bfe184ddcb6022e6616228b
+  revision: b34812c2481c14b1217da0af2ad53ba47b49a62b
   branch: mediaconvert
   specs:
     forest (3.28.1)
