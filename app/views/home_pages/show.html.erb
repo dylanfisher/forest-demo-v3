@@ -1,1 +1,21 @@
-<h1>Forest CMS</h1>
+<div class="site-padding">
+  <div class="container-fluid">
+    <div class="row mb-4">
+      <div class="col">
+        <h1>Forest CMS</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <% MediaItem.order(id: :desc).last(20).each do |media_item| %>
+        <div class="col-md-4 mb-4">
+          <% if media_item.image? %>
+            <%= lazy_image media_item %>
+          <% elsif media_item.video? %>
+            <%= lazy_video media_item %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

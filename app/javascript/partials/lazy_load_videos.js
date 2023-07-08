@@ -49,7 +49,9 @@ export class Video {
       if ( $placeholder.hasClass('lazy-video-initialized') ) return;
 
       var videoHTML = $placeholder.attr('data-video-tag-html');
-      var $video = $(videoHTML);
+      var $videoHTML = $(videoHTML);
+      var $video = $videoHTML.find('video');
+      if ( !$video.length ) $video = $videoHTML;
 
       if ( $placeholder.hasClass('desktop-video') && App.breakpoint.isMobile() ) return;
       if ( $placeholder.hasClass('mobile-video') && !App.breakpoint.isMobile() ) return;
@@ -66,7 +68,7 @@ export class Video {
       }
 
       $video.addClass('lazy-video').attr('src', src);
-      $placeholder.addClass('lazy-video-initialized').hide().after($video);
+      $placeholder.addClass('lazy-video-initialized').hide().after($videoHTML);
 
       $video.one('loadedmetadata', function() {
         $video.closest('.video-jumpfix').addClass('has-loadedmetadata');
@@ -145,6 +147,8 @@ export default (() => {
   $(function() {
     App.$document.on('click.lazyLoadVideo', '.lazy-video', function() {
       var $video = $(this);
+
+      if ( !$video[0].hasAttribute('autoplay') ) return;
 
       if ( $video[0].paused ) {
         $video.data('has-been-paused-by-user', false);

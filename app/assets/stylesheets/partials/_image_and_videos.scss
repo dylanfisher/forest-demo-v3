@@ -13,16 +13,31 @@ audio {
   width: 100%;
 }
 
-.forest-image-jump-fix {
+.forest-image-jump-fix,
+.forest-asset-jump-fix {
   position: relative;
   height: 0;
   overflow: hidden;
+}
 
+.forest-image-jump-fix,
+.forest-asset-jump-fix {
   img {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+  }
+}
+
+.forest-asset-jump-fix {
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
